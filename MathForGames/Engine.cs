@@ -62,8 +62,8 @@ namespace MathForGames
 
             Scene scene = new Scene();
             
-            Player player = new Player('@', 10, 10, 50, Color.DARKPURPLE, "Player");
-            Actor actor = new Actor('A', 5, 5, Color.RED, "Actor");
+            Player player = new Player('@', 30, 30, 50, Color.DARKPURPLE, "Player");
+            Enemy actor = new Enemy('A', 5, 5, 1, player, Color.RED, "Enemy");
 
             //UI Section
             //UIText healthText = new UIText(20, 4, "Health", ConsoleColor.Cyan, 50, 10, "This is a test. \n All the text inside if this box is not important at all.");
