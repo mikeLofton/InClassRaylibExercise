@@ -34,6 +34,7 @@ namespace MathForGames
         public override void Update(float deltaTime)
         {
             Vector2 direction = new Vector2();
+            float distance;
 
             direction = _target.Position - Position;
 
@@ -41,9 +42,19 @@ namespace MathForGames
 
             Velocity = direction * Speed;
 
-            Position += Velocity * deltaTime;
+            distance = Vector2.Distance(Position, _target.Position);
 
+            if (GetTargetInSight() && distance < 70)
+                Position += Velocity * deltaTime;
+            
             base.Update(deltaTime);
+        }
+
+        public bool GetTargetInSight()
+        {
+            Vector2 directionOfTarget = (_target.Position - Position).Normalized;
+
+            return Vector2.DotProduct(directionOfTarget, Forward) > 0;
         }
 
         public override void OnCollision(Actor actor)
