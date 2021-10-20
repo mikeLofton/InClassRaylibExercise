@@ -42,9 +42,9 @@ namespace MathForGames
 
             Velocity = direction * Speed;
 
-            distance = Vector2.Distance(Position, _target.Position);
+            distance = Vector2.Distance(_target.Position, Position);
 
-            if (GetTargetInSight() && distance < 70)
+            if (GetTargetInSight() && distance < 100)
                 Position += Velocity * deltaTime;
             
             base.Update(deltaTime);
@@ -54,7 +54,7 @@ namespace MathForGames
         {
             Vector2 directionOfTarget = (_target.Position - Position).Normalized;
 
-            return Vector2.DotProduct(directionOfTarget, Forward) > 0;
+            return Vector2.DotProduct(directionOfTarget, Forward) > 0.8;
         }
 
         public override void OnCollision(Actor actor)
