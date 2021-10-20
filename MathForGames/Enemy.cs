@@ -54,7 +54,7 @@ namespace MathForGames
         {
             Vector2 directionOfTarget = (_target.Position - Position).Normalized;
 
-            return Vector2.DotProduct(directionOfTarget, Forward) > 0.8;
+            return Math.Acos(Vector2.DotProduct(directionOfTarget, Forward)) * (180 / Math.PI) < 30;
         }
 
         public override void OnCollision(Actor actor)
