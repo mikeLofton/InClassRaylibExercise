@@ -88,7 +88,7 @@ namespace MathForGames
         }
 
         /// <summary>
-        /// Checks if this actpr collided with another actor
+        /// Checks if this actor collided with another actor
         /// </summary>
         /// <param name="other">The actor to check for a collision against</param>
         /// <returns>True if the distance between the actors is less than the radii of the two combined</returns>
