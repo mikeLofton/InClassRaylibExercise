@@ -53,5 +53,11 @@ namespace MathForGames
             if (actor is Enemy)
                 Engine.CloseApplication();
         }
+
+        public override void Draw()
+        {
+            base.Draw();
+            Collider.Draw();
+        }
     }
 }

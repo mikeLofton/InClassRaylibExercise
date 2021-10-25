@@ -62,5 +62,11 @@ namespace MathForGames
         {
             Console.WriteLine("Collision occurred");
         }
+
+        public override void Draw()
+        {
+            base.Draw();
+            Collider.Draw();
+        }
     }
 }
