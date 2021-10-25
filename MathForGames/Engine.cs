@@ -63,9 +63,12 @@ namespace MathForGames
             Scene scene = new Scene();
             
             Player player = new Player('@', 30, 50, 100, Color.DARKPURPLE, "Player");
-            player.CollisionRadius = 20;
+            CircleCollider playerCollider = new CircleCollider(15, player);
+            player.Collider = playerCollider;
+
             Enemy enemy1 = new Enemy('A', 5, 5, 1, player, Color.RED, "Enemy1");
-            enemy1.CollisionRadius = 20;
+            CircleCollider enemyCollider = new CircleCollider(15, enemy1);
+            enemy1.Collider = enemyCollider;
 
             //UI Section
             UIText healthText = new UIText(10, 10, Color.BLUE, "Health", 70, 70, 15, "This is a test. \n All the text inside if this box is not important at all.");
