@@ -13,6 +13,7 @@ namespace MathForGames
         public int Height;
         public int FontSize;
         public Font Font;
+        public Color FontColor;
 
         /// <summary>
         /// Sets the starting value for the text box
@@ -24,14 +25,15 @@ namespace MathForGames
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="text"></param>
-        public UIText(float x, float y, Color color, string name, int width, int height, int fontSize, string text = "")
-            : base('\0', x, y, color, name)
+        public UIText(float x, float y, string name, Color color, int width, int height, int fontSize, string text = "")
+            : base(x, y, name, "")
         {
             Text = text;
             Width = width;
             Height = height;
             Font = Raylib.LoadFont("resources/fonts/alagard.png");
             FontSize = fontSize;
+            FontColor = color;
         }
 
         public override void Draw()
