@@ -62,18 +62,20 @@ namespace MathForGames
 
             Scene scene = new Scene();
             
-            Player player = new Player('@', 30, 50, 100, Color.DARKPURPLE, "Player");
+            Player player = new Player(30, 50, 100, "Player", "player.png");
+            player.SetScale(50, 50);
             CircleCollider playerCircleCollider = new CircleCollider(15, player);
             AABBCollider playerBoxCollider = new AABBCollider(40, 40, player);
             player.Collider = playerCircleCollider;
 
-            Enemy enemy1 = new Enemy('A', 10, 300, 1, player, Color.RED, "Enemy1");
+            Enemy enemy1 = new Enemy(10, 300, 1, player, "Enemy1", "enemy.png");
+            enemy1.SetScale(50, 50);
             CircleCollider enemyCircleCollider = new CircleCollider(15, enemy1);
             AABBCollider enemyBoxCollider = new AABBCollider(35, 40, enemy1);
             enemy1.Collider = enemyBoxCollider;
 
             //UI Section
-            UIText healthText = new UIText(10, 10, Color.BLUE, "Health", 70, 70, 15, "This is a test. \n All the text inside if this box is not important at all.");
+            UIText healthText = new UIText(10, 10, "Health", Color.BLUE, 70, 70, 15, "Test text for program");
             scene.AddUIElement(healthText);
 
             scene.AddActor(player);
