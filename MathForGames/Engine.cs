@@ -62,13 +62,13 @@ namespace MathForGames
 
             Scene scene = new Scene();
             
-            Player player = new Player(30, 50, 100, "Player", "player.png");
+            Player player = new Player(30, 50, 100, "Player", "Images/player.png");
             player.SetScale(50, 50);
             CircleCollider playerCircleCollider = new CircleCollider(15, player);
             AABBCollider playerBoxCollider = new AABBCollider(40, 40, player);
             player.Collider = playerCircleCollider;
 
-            Enemy enemy1 = new Enemy(10, 300, 1, player, "Enemy1", "enemy.png");
+            Enemy enemy1 = new Enemy(10, 300, 1, player, "Enemy1", "Images/enemy.png");
             enemy1.SetScale(50, 50);
             CircleCollider enemyCircleCollider = new CircleCollider(15, enemy1);
             AABBCollider enemyBoxCollider = new AABBCollider(35, 40, enemy1);
