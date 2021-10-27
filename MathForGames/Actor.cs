@@ -111,6 +111,16 @@ namespace MathForGames
         }
 
         /// <summary>
+        /// Sets the position of the actor
+        /// </summary>
+        /// <param name="translationX">The new x position</param>
+        /// <param name="translationY">The new y position</param>
+        public void SetTranslation(float translationX, float translationY)
+        {
+
+        }
+
+        /// <summary>
         /// Applies the given values to the current translation
         /// </summary>
         /// <param name="translationX">The amount to move on the x</param>
@@ -121,9 +131,18 @@ namespace MathForGames
         }
 
         /// <summary>
-        /// 
+        /// Set the rotation of the actor.
         /// </summary>
-        /// <param name="radians"></param>
+        /// <param name="radians">The angle of the new rotation in radians.</param>
+        public void SetRotation(float radians)
+        {
+
+        }
+
+        /// <summary>
+        /// Adds a rotation to the current transform's rotation.
+        /// </summary>
+        /// <param name="radians">The angle in the radians to turn.</param>
         public void Rotate(float radians)
         {
 

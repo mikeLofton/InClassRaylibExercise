@@ -40,7 +40,8 @@ namespace MathLibrary
         /// <summary>
         /// Creates a new matrix that has been translated by the given value
         /// </summary>
-        /// <param name="translation">The position of the new matrix</param>
+        ///<param name="x">The x position of the new matrix</param>
+        ///<param name="y">The y position of the new matrix</param>
         /// <returns></returns>
         public static Matrix3 CreateTranslation(float x, float y)
         {
@@ -51,8 +52,8 @@ namespace MathLibrary
         /// Creates a new matrix that has been scaled by the given value
         /// </summary>
         /// <param name="x">The value to use to scale the matrix in the x axis</param>
-        /// <param name="y">The valuye to </param>
-        /// <returns>The </returns>
+        /// <param name="y">The value to use to scale the matrix in the y axis</param>
+        /// <returns>The result of the scale</returns>
         public static Matrix3 CreateScale(float x, float y)
         {
 
@@ -63,6 +64,14 @@ namespace MathLibrary
 
         }
 
+        public static Matrix3 operator -(Matrix3 lhs, Matrix3 rhs)
+        {
 
+        }
+
+        public static Matrix3 operator *(Matrix3 lhs, Matrix3 rhs)
+        {
+
+        }
     }
 }
