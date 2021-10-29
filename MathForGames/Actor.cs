@@ -117,7 +117,8 @@ namespace MathForGames
         /// <param name="translationY">The new y position</param>
         public void SetTranslation(float translationX, float translationY)
         {
-
+            _translation.M02 = translationX;
+            _translation.M12 = translationY;
         }
 
         /// <summary>
@@ -127,7 +128,8 @@ namespace MathForGames
         /// <param name="translationY">The amount to move on the y</param>
         public void Translate(float translationX, float translationY)
         {
-
+            _translation.M02 += translationX;
+            _translation.M12 += translationY;
         }
 
         /// <summary>
@@ -136,7 +138,10 @@ namespace MathForGames
         /// <param name="radians">The angle of the new rotation in radians.</param>
         public void SetRotation(float radians)
         {
-
+            _rotation.M00 = (float)Math.Cos(radians);
+            _rotation.M10 = (float)Math.Sin(radians);
+            _rotation.M01 = (float)Math.Asin(radians);
+            _rotation.M11 = (float)Math.Cos(radians);
         }
 
         /// <summary>
@@ -145,14 +150,17 @@ namespace MathForGames
         /// <param name="radians">The angle in the radians to turn.</param>
         public void Rotate(float radians)
         {
-
+            _rotation.M00 += (float)Math.Cos(radians);
+            _rotation.M10 += (float)Math.Sin(radians);
+            _rotation.M01 += (float)Math.Asin(radians);
+            _rotation.M11 += (float)Math.Cos(radians);
         }
 
         /// <summary>
-        /// 
+        /// Sets the scale of the actor
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">The value to scale on the x axis.</param>
+        /// <param name="y">The value to scale on the y axis</param>
         public void SetScale(float x, float y)
         {
             _scale.M00 = x;
@@ -160,13 +168,14 @@ namespace MathForGames
         }
 
         /// <summary>
-        /// 
+        /// Scales the actor by the given amount
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">The value to scale on the x axis.</param>
+        /// <param name="y">The value to scale on the y axis</param>
         public void Scale(float x, float y)
         {
-
+            _scale.M00 += x;
+            _scale.M11 += y;
         }
     }
 }

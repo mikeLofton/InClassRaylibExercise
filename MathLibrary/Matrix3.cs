@@ -34,7 +34,14 @@ namespace MathLibrary
         /// <returns></returns>
         public static Matrix3 CreateRotation(float radians)
         {
+            Matrix3 rotateMatrix = new Matrix3();
 
+            rotateMatrix.M00 = (float)Math.Cos(radians);
+            rotateMatrix.M10 = (float)Math.Sin(radians);
+            rotateMatrix.M01 = (float)Math.Asin(radians);
+            rotateMatrix.M11 = (float)Math.Cos(radians);
+
+            return rotateMatrix;
         }
 
         /// <summary>
@@ -45,7 +52,12 @@ namespace MathLibrary
         /// <returns></returns>
         public static Matrix3 CreateTranslation(float x, float y)
         {
+            Matrix3 translatedMatrix = new Matrix3();
 
+            translatedMatrix.M02 = x;
+            translatedMatrix.M12 = y;
+
+            return translatedMatrix;
         }
 
         /// <summary>
@@ -56,17 +68,22 @@ namespace MathLibrary
         /// <returns>The result of the scale</returns>
         public static Matrix3 CreateScale(float x, float y)
         {
+            Matrix3 scaledMatrix = new Matrix3();
 
+            scaledMatrix.M00 = x;
+            scaledMatrix.M11 = y;
+
+            return scaledMatrix;
         }
 
         public static Matrix3 operator +(Matrix3 lhs, Matrix3 rhs)
         {
-            
+            return lhs + rhs;
         }
 
         public static Matrix3 operator -(Matrix3 lhs, Matrix3 rhs)
         {
-
+            return lhs - rhs;
         }
 
         public static Matrix3 operator *(Matrix3 lhs, Matrix3 rhs)
