@@ -60,7 +60,7 @@ namespace MathForGames
                 //Check for collision
                 for (int j = 0; j < _UIElements.Length; j++)
                 {
-                    if (_UIElements[i].Position == _UIElements[j].Position && j != i)
+                    if (_UIElements[i].LocalPosition == _UIElements[j].LocalPosition && j != i)
                         _UIElements[i].OnCollision(_UIElements[j]);
                 }
             }

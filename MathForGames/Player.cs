@@ -46,7 +46,7 @@ namespace MathForGames
             if (Velocity.Magnitude > 0)
                 Forward = Velocity.Normalized;
 
-            Position += Velocity;
+            LocalPosition += Velocity;
 
             base.Update(deltaTime);
         }
