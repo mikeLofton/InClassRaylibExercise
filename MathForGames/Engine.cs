@@ -64,6 +64,8 @@ namespace MathForGames
             
             Player player = new Player(30, 50, 100, "Player", "Images/player.png");
             player.SetScale(50, 50);
+            player.SetTranslation(500, 300);   
+            
             CircleCollider playerCircleCollider = new CircleCollider(15, player);
             AABBCollider playerBoxCollider = new AABBCollider(40, 40, player);
             player.Collider = playerCircleCollider;
@@ -73,6 +75,7 @@ namespace MathForGames
             CircleCollider enemyCircleCollider = new CircleCollider(15, enemy1);
             AABBCollider enemyBoxCollider = new AABBCollider(35, 40, enemy1);
             enemy1.Collider = enemyBoxCollider;
+            enemy1.Forward = new Vector2(700, 900);
 
             //UI Section
             UIText healthText = new UIText(10, 10, "Health", Color.BLUE, 70, 70, 15, "Test text for program");
