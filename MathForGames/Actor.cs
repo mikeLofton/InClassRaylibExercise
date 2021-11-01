@@ -117,8 +117,7 @@ namespace MathForGames
         /// <param name="translationY">The new y position</param>
         public void SetTranslation(float translationX, float translationY)
         {
-            _translation.M02 = translationX;
-            _translation.M12 = translationY;
+            _translation = Matrix3.CreateTranslation(translationX, translationY);
         }
 
         /// <summary>
@@ -128,8 +127,7 @@ namespace MathForGames
         /// <param name="translationY">The amount to move on the y</param>
         public void Translate(float translationX, float translationY)
         {
-            _translation.M02 += translationX;
-            _translation.M12 += translationY;
+            _translation *= Matrix3.CreateTranslation(translationX, translationY);
         }
 
         /// <summary>
@@ -138,10 +136,7 @@ namespace MathForGames
         /// <param name="radians">The angle of the new rotation in radians.</param>
         public void SetRotation(float radians)
         {
-            _rotation.M00 = (float)Math.Cos(radians);
-            _rotation.M10 = (float)Math.Sin(radians);
-            _rotation.M01 = (float)Math.Asin(radians);
-            _rotation.M11 = (float)Math.Cos(radians);
+            _rotation = Matrix3.CreateRotation(radians);
         }
 
         /// <summary>
@@ -150,10 +145,7 @@ namespace MathForGames
         /// <param name="radians">The angle in the radians to turn.</param>
         public void Rotate(float radians)
         {
-            _rotation.M00 += (float)Math.Cos(radians);
-            _rotation.M10 += (float)Math.Sin(radians);
-            _rotation.M01 += (float)Math.Asin(radians);
-            _rotation.M11 += (float)Math.Cos(radians);
+            _rotation *= Matrix3.CreateRotation(radians);
         }
 
         /// <summary>
@@ -163,8 +155,7 @@ namespace MathForGames
         /// <param name="y">The value to scale on the y axis</param>
         public void SetScale(float x, float y)
         {
-            _scale.M00 = x;
-            _scale.M11 = y;
+            _scale = Matrix3.CreateScale(x, y);
         }
 
         /// <summary>
@@ -174,8 +165,7 @@ namespace MathForGames
         /// <param name="y">The value to scale on the y axis</param>
         public void Scale(float x, float y)
         {
-            _scale.M00 += x;
-            _scale.M11 += y;
+            _scale *= Matrix3.CreateScale(x, y);
         }
     }
 }
