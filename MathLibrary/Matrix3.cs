@@ -121,5 +121,10 @@ namespace MathLibrary
 
             return result;
         }
+
+        public static Vector3 operator *(Matrix3 lhs, Vector3 rhs)
+        {
+            return new Vector3();
+        }
     }
 }

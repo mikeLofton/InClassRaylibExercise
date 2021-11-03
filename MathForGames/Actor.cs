@@ -10,16 +10,15 @@ namespace MathForGames
     {
         private string _name;
         private bool _started;
-        private Vector2 _forward = new Vector2(1,0);
+        private Vector3 _forward = new Vector3(0, 0, 1);
         private Collider _collider;
-        private Matrix3 _globalTransform = Matrix3.Identity;
-        private Matrix3 _localTransform = Matrix3.Identity;
-        private Matrix3 _translation = Matrix3.Identity;
-        private Matrix3 _rotation = Matrix3.Identity;
-        private Matrix3 _scale = Matrix3.Identity;
+        private Matrix4 _globalTransform = Matrix4.Identity;
+        private Matrix4 _localTransform = Matrix4.Identity;
+        private Matrix4 _translation = Matrix4.Identity;
+        private Matrix4 _rotation = Matrix4.Identity;
+        private Matrix4 _scale = Matrix4.Identity;
         private Actor[] _children = new Actor[0];
         private Actor _parent;
-        private Sprite _sprite;
 
         /// <summary>
         /// True if the start functions has been called for this actor
@@ -39,9 +38,9 @@ namespace MathForGames
             get { return new Vector2(_scale.M00, _scale.M10).Magnitude; }
         }
 
-        public Vector2 LocalPosition
+        public Vector3 LocalPosition
         {
-            get { return new Vector2(_translation.M02, _translation.M12); }
+            get { return new Vector3(_translation.M03, _translation.M13, _translation.M23); }
             set 
             {
                 SetTranslation(value.X, value.Y);
@@ -51,10 +50,10 @@ namespace MathForGames
         /// <summary>
         /// The position of this actor in the world
         /// </summary>
-        public Vector2 WorldPosition
+        public Vector3 WorldPosition
         {
             //Return the global transform's T column
-            get { return new Vector2(_globalTransform.M02, _globalTransform.M12); }
+            get { return new Vector3(_globalTransform.M03, _globalTransform.M13, _globalTransform.M23); }
             set 
             {
                 //If the actor has a parent...
@@ -71,13 +70,13 @@ namespace MathForGames
             }
         }
 
-        public Matrix3 GlobalTransform
+        public Matrix4 GlobalTransform
         {
             get { return _globalTransform; } 
             private set { _globalTransform = value; }
         }
 
-        public Matrix3 LocalTransform
+        public Matrix4 LocalTransform
         {
             get { return _localTransform; }
             private set { _localTransform = value; }
@@ -96,26 +95,22 @@ namespace MathForGames
 
         public Vector2 Size
         {
-            get { return new Vector2(_scale.M00, _scale.M11); }
-            set { SetScale(value.X, value.Y); }
-        }
-
-        public Vector2 Forward
-        {
-            get 
+            get
             {
                 float xScale = new Vector2(_scale.M00, _scale.M10).Magnitude;
                 float yScale = new Vector2(_scale.M01, _scale.M11).Magnitude;
 
-                return new Vector2(xScale, yScale); 
+                return new Vector2(xScale, yScale);
             }
-            set  { SetScale(value.X, value.Y); }
+            set { SetScale(value.X, value.Y); }
         }
 
-        public Sprite Sprite
+        public Vector3 Forward
         {
-            get { return _sprite; }
-            set { _sprite = value; }
+            get
+            {
+                return new Vector3()
+            }
         }
 
         /// <summary>
