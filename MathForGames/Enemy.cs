@@ -9,9 +9,8 @@ namespace MathForGames
     class Enemy : Actor
     {
         private float _speed;
-        private Vector2 _velocity;
+        private Vector3 _velocity;
         private Actor _target;
-        private float _maxViewAngle;
 
         public float Speed
         {
@@ -19,14 +18,14 @@ namespace MathForGames
             set { _speed = value; }
         }
 
-        public Vector2 Velocity
+        public Vector3 Velocity
         {
             get { return _velocity; }
             set { _velocity = value; }
         }
 
-        public Enemy(float x, float y, float speed, Actor target, string name = "Actor", string path = "") :
-            base(x, y, name, path)
+        public Enemy(float x, float y, float speed, Actor target, string name = "Actor", Shape shape = Shape.CUBE) :
+            base(x, y, name, shape)
         {
             _speed = speed;
             _target = target;   
@@ -34,7 +33,7 @@ namespace MathForGames
 
         public override void Update(float deltaTime)
         {
-            Vector2 direction = new Vector2();
+            Vector3 direction = new Vector3();
             float distance;
 
             direction = _target.LocalPosition - LocalPosition;
@@ -43,7 +42,7 @@ namespace MathForGames
 
             Velocity = direction * Speed;
 
-            distance = Vector2.Distance(_target.LocalPosition, LocalPosition);
+            distance = Vector3.Distance(_target.LocalPosition, LocalPosition);
 
             if (GetTargetInSight() && distance < 100)
                 LocalPosition += Velocity * deltaTime;
@@ -53,9 +52,9 @@ namespace MathForGames
 
         public bool GetTargetInSight()
         {
-            Vector2 directionOfTarget = (_target.LocalPosition - LocalPosition).Normalized;
+            Vector3 directionOfTarget = (_target.LocalPosition - LocalPosition).Normalized;
 
-            return Math.Acos(Vector2.DotProduct(directionOfTarget, Forward)) * (180 / Math.PI) < 30;
+            return Math.Acos(Vector3.DotProduct(directionOfTarget, Forward)) * (180 / Math.PI) < 30;
         }
 
         public override void OnCollision(Actor actor)
