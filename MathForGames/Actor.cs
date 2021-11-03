@@ -29,6 +29,16 @@ namespace MathForGames
             get { return _started; }
         }
 
+        public float ScaleX
+        {
+            get {return new Vector2(_scale.M00, _scale.M10).Magnitude; }
+        }
+
+        public float ScaleY
+        {
+            get { return new Vector2(_scale.M00, _scale.M10).Magnitude; }
+        }
+
         public Vector2 LocalPosition
         {
             get { return new Vector2(_translation.M02, _translation.M12); }
@@ -40,8 +50,20 @@ namespace MathForGames
 
         public Vector2 WorldPosition
         {
-            get { return new Vector2(); }
-            set { SetTranslation(value.X, value.Y); }
+            get { return new Vector2(_translation.M02, _translation.M12); }
+            set 
+            {
+                if (Parent != null)
+                {
+                    Vector2 offset = value - Parent.LocalPosition;
+
+                    SetTranslation(offset.X / ScaleX, offset.Y / ScaleY);
+                }
+                else
+                {
+                    SetTranslation(value.X, value.Y);
+                }                
+            }
         }
 
         public Matrix3 GlobalTransform
@@ -53,7 +75,7 @@ namespace MathForGames
         public Matrix3 LocalTransform
         {
             get { return _localTransform; }
-            private set {; }
+            private set { _localTransform = value; }
         }
 
         public Actor Parent
@@ -134,6 +156,8 @@ namespace MathForGames
 
             //Set the old array to be the new array
             _children = tempArray;
+
+            child.Parent = this;
         }
 
         public bool RemoveChild(Actor child)
@@ -182,13 +206,14 @@ namespace MathForGames
         public virtual void Update(float deltaTime)
         {
             _localTransform = _translation * _rotation * _scale;
-            Console.WriteLine(_name + ": " + LocalPosition.X + ", " + LocalPosition.Y);
+            UpdateTransforms();
+            Console.WriteLine(_name + ": " + WorldPosition.X + ", " + WorldPosition.Y);
         }
 
         public virtual void Draw()
         {
             if (_sprite != null)
-                _sprite.Draw(_localTransform);
+                _sprite.Draw(_globalTransform);
         }
 
         public void End()

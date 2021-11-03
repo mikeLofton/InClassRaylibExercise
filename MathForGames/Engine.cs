@@ -69,20 +69,29 @@ namespace MathForGames
             CircleCollider playerCircleCollider = new CircleCollider(15, player);
             AABBCollider playerBoxCollider = new AABBCollider(40, 40, player);
             player.Collider = playerCircleCollider;
-
-            Enemy enemy1 = new Enemy(10, 300, 1, player, "Enemy1", "Images/enemy.png");
-            enemy1.SetScale(50, 50);
-            CircleCollider enemyCircleCollider = new CircleCollider(15, enemy1);
-            AABBCollider enemyBoxCollider = new AABBCollider(35, 40, enemy1);
-            enemy1.Collider = enemyBoxCollider;
-            enemy1.Forward = new Vector2(700, 900);
         
             // Solar system
-            Planet sun = new Planet(30, 50, 30, "Sun", "Images/bullet.png");
-            sun.SetScale(50, 50);
-            sun.SetTranslation(500, 300);
+            Planet sun = new Planet(30, 50, 1, "Sun", "Images/bullet.png");
+            sun.SetScale(100, 100);
+            sun.SetTranslation(400, 225);
+            //sun.Rotate(1);
+            CircleCollider sunCircleCollider = new CircleCollider(15, sun);
+            sun.Collider = sunCircleCollider;
+
+            Planet planet1 = new Planet(20, 30, 1, "Planet1", "Images/bullet.png");
+            planet1.SetScale(1, 1);
+            planet1.SetTranslation(1, 1);
+
+            Planet planet2 = new Planet(20, 30, 1, "Planet1", "Images/bullet.png");
+            planet2.SetScale(0.5f, 0.5f);
+            planet2.SetTranslation(1, 0);
+
+            sun.AddChild(planet1);
+            planet1.AddChild(planet2);
 
             scene.AddActor(sun);
+            scene.AddActor(planet1);
+            scene.AddActor(planet2);
 
             _currentSceneIndex = AddScene(scene);
 
