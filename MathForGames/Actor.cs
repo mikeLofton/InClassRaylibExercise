@@ -96,20 +96,24 @@ namespace MathForGames
 
         public Vector2 Size
         {
-            get { return new Vector2(_scale.M00, _scale.M11); }
+            get
+            {
+                float xScale = new Vector2(_scale.M00, _scale.M10).Magnitude;
+                float yScale = new Vector2(_scale.M01, _scale.M11).Magnitude;
+
+                return new Vector2(xScale, yScale);
+            }
             set { SetScale(value.X, value.Y); }
         }
 
         public Vector2 Forward
         {
-            get 
-            {
-                float xScale = new Vector2(_scale.M00, _scale.M10).Magnitude;
-                float yScale = new Vector2(_scale.M01, _scale.M11).Magnitude;
-
-                return new Vector2(xScale, yScale); 
+            get { return new Vector2(_rotation.M00, _rotation.M10); }
+            set 
+            { 
+                Vector2 point = value.Normalized + LocalPosition;
+                LookAt(point);
             }
-            set  { SetScale(value.X, value.Y); }
         }
 
         public Sprite Sprite
