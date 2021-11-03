@@ -125,13 +125,11 @@ namespace MathForGames
         public Actor(float x, float y, string name = "Actor", string path = "") : 
             this(new Vector2 { X = x, Y = y}, name, path) {}
 
-        public Actor(Vector2 position, string name = "Actor", string path = "")
+        public Actor(Vector3 position, string name = "Actor", string path = "")
         {
             LocalPosition = position;
             _name = name;
 
-            if (path != "")
-                _sprite = new Sprite(path);
         }
 
         public void UpdateTransforms()
