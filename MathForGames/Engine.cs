@@ -64,8 +64,7 @@ namespace MathForGames
             
             Player player = new Player(30, 50, 100, "Player", "Images/player.png");
             player.SetScale(50, 50);
-            player.SetTranslation(500, 300);   
-            
+            player.SetTranslation(500, 300);             
             CircleCollider playerCircleCollider = new CircleCollider(15, player);
             AABBCollider playerBoxCollider = new AABBCollider(40, 40, player);
             player.Collider = playerCircleCollider;
@@ -74,7 +73,6 @@ namespace MathForGames
             Planet sun = new Planet(30, 50, 1, "Sun", "Images/bullet.png");
             sun.SetScale(100, 100);
             sun.SetTranslation(400, 225);
-            //sun.Rotate(1);
             CircleCollider sunCircleCollider = new CircleCollider(15, sun);
             sun.Collider = sunCircleCollider;
 
@@ -82,7 +80,7 @@ namespace MathForGames
             planet1.SetScale(1, 1);
             planet1.SetTranslation(1, 1);
 
-            Planet planet2 = new Planet(20, 30, 1, "Planet1", "Images/bullet.png");
+            Planet planet2 = new Planet(20, 30, 1, "Planet2", "Images/bullet.png");
             planet2.SetScale(0.5f, 0.5f);
             planet2.SetTranslation(1, 0);
 

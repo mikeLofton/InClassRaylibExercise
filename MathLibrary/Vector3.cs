@@ -4,7 +4,8 @@ using System.Text;
 
 namespace MathLibrary
 {
-    class Vector3
+    public struct Vector3
     {
+
     }
 }

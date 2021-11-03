@@ -48,11 +48,16 @@ namespace MathForGames
             }
         }
 
+        /// <summary>
+        /// The position of this actor in the world
+        /// </summary>
         public Vector2 WorldPosition
         {
-            get { return new Vector2(_translation.M02, _translation.M12); }
+            //Return the global transform's T column
+            get { return new Vector2(_globalTransform.M02, _globalTransform.M12); }
             set 
             {
+                //If the actor has a parent...
                 if (Parent != null)
                 {
                     Vector2 offset = value - Parent.LocalPosition;
@@ -61,7 +66,7 @@ namespace MathForGames
                 }
                 else
                 {
-                    SetTranslation(value.X, value.Y);
+                    LocalPosition = value;
                 }                
             }
         }
@@ -97,12 +102,14 @@ namespace MathForGames
 
         public Vector2 Forward
         {
-            get { return new Vector2(_rotation.M00, _rotation.M10); }
-            set
+            get 
             {
-                Vector2 point = value.Normalized + LocalPosition;
-                LookAt(point);
+                float xScale = new Vector2(_scale.M00, _scale.M10).Magnitude;
+                float yScale = new Vector2(_scale.M01, _scale.M11).Magnitude;
+
+                return new Vector2(xScale, yScale); 
             }
+            set  { SetScale(value.X, value.Y); }
         }
 
         public Sprite Sprite
@@ -134,6 +141,8 @@ namespace MathForGames
 
         public void UpdateTransforms()
         {
+            _localTransform = _translation * _rotation * _scale;
+
             if (_parent != null)
                 GlobalTransform = _parent.GlobalTransform * LocalTransform;
             else
@@ -151,13 +160,14 @@ namespace MathForGames
                 tempArray[i] = _children[i];
             }
 
-            //Add the new actor to the end of the new array
+            //Add the new child to the end of the new array
             tempArray[_children.Length] = child;
 
-            //Set the old array to be the new array
-            _children = tempArray;
-
+            //Set the parent of the actor to be this actor
             child.Parent = this;
+
+            //Set the old array to be the new array
+            _children = tempArray;          
         }
 
         public bool RemoveChild(Actor child)
@@ -183,15 +193,16 @@ namespace MathForGames
                 //Otherwise if this actor is the one to remove...
                 else
                 {
-                    //...set actorRemoved to true
+                    //...set childRemoved to true
                     childRemoved = true;
                 }
             }
 
-            //If actor removed is successful set actors to temp array
+            //If actor removed is successful set children to temp array
             if (childRemoved)
             {
                 _children = tempArray;
+                //Set the parent of the child to be nothing
                 child.Parent = null;
             }
 
@@ -204,8 +215,7 @@ namespace MathForGames
         }
 
         public virtual void Update(float deltaTime)
-        {
-            _localTransform = _translation * _rotation * _scale;
+        {           
             UpdateTransforms();
             Console.WriteLine(_name + ": " + WorldPosition.X + ", " + WorldPosition.Y);
         }
