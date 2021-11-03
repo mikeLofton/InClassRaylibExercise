@@ -112,7 +112,7 @@ namespace MathForGames
 
         public void UpdateTransforms()
         {
-
+            
         }
 
         public void AddChild(Actor child)
