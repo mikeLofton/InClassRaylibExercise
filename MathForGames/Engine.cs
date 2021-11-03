@@ -76,13 +76,13 @@ namespace MathForGames
             AABBCollider enemyBoxCollider = new AABBCollider(35, 40, enemy1);
             enemy1.Collider = enemyBoxCollider;
             enemy1.Forward = new Vector2(700, 900);
+        
+            // Solar system
+            Planet sun = new Planet(30, 50, 30, "Sun", "Images/bullet.png");
+            sun.SetScale(50, 50);
+            sun.SetTranslation(500, 300);
 
-            //UI Section
-            UIText healthText = new UIText(10, 10, "Health", Color.BLUE, 70, 70, 15, "Test text for program");
-            scene.AddUIElement(healthText);
-
-            scene.AddActor(player);
-            scene.AddActor(enemy1);
+            scene.AddActor(sun);
 
             _currentSceneIndex = AddScene(scene);
 
