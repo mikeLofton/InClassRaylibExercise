@@ -47,7 +47,7 @@ namespace MathForGames
         public Matrix3 GlobalTransform
         {
             get { return _globalTransform; } 
-            private set {; }
+            private set { _globalTransform = value; }
         }
 
         public Matrix3 LocalTransform
@@ -112,7 +112,10 @@ namespace MathForGames
 
         public void UpdateTransforms()
         {
-            
+            if (_parent != null)
+                GlobalTransform = _parent.GlobalTransform * LocalTransform;
+            else
+                GlobalTransform = LocalTransform;
         }
 
         public void AddChild(Actor child)

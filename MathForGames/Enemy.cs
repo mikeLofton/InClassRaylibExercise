@@ -37,23 +37,23 @@ namespace MathForGames
             Vector2 direction = new Vector2();
             float distance;
 
-            direction = _target.Position - Position;
+            direction = _target.LocalPosition - LocalPosition;
 
             direction.Normalize();
 
             Velocity = direction * Speed;
 
-            distance = Vector2.Distance(_target.Position, Position);
+            distance = Vector2.Distance(_target.LocalPosition, LocalPosition);
 
             if (GetTargetInSight() && distance < 100)
-                Position += Velocity * deltaTime;
+                LocalPosition += Velocity * deltaTime;
             
             base.Update(deltaTime);
         }
 
         public bool GetTargetInSight()
         {
-            Vector2 directionOfTarget = (_target.Position - Position).Normalized;
+            Vector2 directionOfTarget = (_target.LocalPosition - LocalPosition).Normalized;
 
             return Math.Acos(Vector2.DotProduct(directionOfTarget, Forward)) * (180 / Math.PI) < 30;
         }
