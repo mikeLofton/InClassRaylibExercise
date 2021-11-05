@@ -122,8 +122,8 @@ namespace MathForGames
             set { _collider = value; }
         }
 
-        public Actor(float x, float y, string name = "Actor", Shape shape = Shape.CUBE) : 
-            this(new Vector3 { X = x, Y = y}, name, shape) {}
+        public Actor(float x, float y, float z, string name = "Actor", Shape shape = Shape.CUBE) : 
+            this(new Vector3 { X = x, Y = y, Z = z}, name, shape) {}
 
         public Actor(Vector3 position, string name = "Actor", Shape shape = Shape.CUBE)
         {
@@ -221,10 +221,10 @@ namespace MathForGames
             switch (_shape)
             {
                 case Shape.CUBE:
-                    Raylib.DrawCube(position, Size.X, Size.Y, Size.Z, Color.BLACK);
+                    Raylib.DrawCube(position, Size.X, Size.Y, Size.Z, Color.RED);
                     break;
                 case Shape.SPHERE:
-                    Raylib.DrawSphere(position, Size.X, Color.BLACK);
+                    Raylib.DrawSphere(position, Size.X, Color.BLUE);
                     break;
             }
         }

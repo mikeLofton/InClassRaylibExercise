@@ -23,8 +23,8 @@ namespace MathForGames
             set { _velocity = value; }
         }
 
-        public Player(float x, float y, float speed, string name = "Actor", Shape shape = Shape.CUBE) : 
-            base(x, y, name, shape)
+        public Player(float x, float y, float z, float speed, string name = "Actor", Shape shape = Shape.CUBE) : 
+            base(x, y, z, name, shape)
         {
             _speed = speed;
         }
@@ -57,7 +57,7 @@ namespace MathForGames
         public override void Draw()
         {
             base.Draw();
-            Collider.Draw();
+            //Collider.Draw();
         }
     }
 }

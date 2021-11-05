@@ -80,12 +80,11 @@ namespace MathForGames
 
             Scene scene = new Scene();
 
-            Player player = new Player(400, 225, 30, "Player", Shape.CUBE);
-            player.SetScale(50, 50, 50);
-            player.SetTranslation(100, 0, 100);
-            CircleCollider playerCircleCollider = new CircleCollider(15, player);
-            AABBCollider playerBoxCollider = new AABBCollider(40, 40, player);
-            player.Collider = playerCircleCollider;
+            Player player = new Player(1, 0, 1, 30, "Player", Shape.CUBE);
+            player.SetScale(1, 1, 1);
+            //CircleCollider playerCircleCollider = new CircleCollider(15, player);
+            //AABBCollider playerBoxCollider = new AABBCollider(40, 40, player);
+            //player.Collider = playerCircleCollider;
 
             scene.AddActor(player);
 
