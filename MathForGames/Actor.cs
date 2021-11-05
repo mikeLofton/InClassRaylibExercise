@@ -41,7 +41,7 @@ namespace MathForGames
             get { return new Vector3(_translation.M03, _translation.M13, _translation.M23); }
             set 
             {
-                SetTranslation(value.X, value.Y);
+                SetTranslation(value.X, value.Y, value.Z);
             }
         }
 
@@ -58,8 +58,9 @@ namespace MathForGames
                 if (Parent != null)
                 {
                     float xOffset = (value.X - Parent.WorldPosition.X) / new Vector3(GlobalTransform.M00, GlobalTransform.M10, GlobalTransform.M20).Magnitude;
-                    float yOffset = (value.Y - Parent.WorldPosition.Y) / new Vector3(GlobalTransform.M00, GlobalTransform.M10, GlobalTransform.M20).Magnitude;
-                    float zOffset = (value.Z - Parent.WorldPosition.Z) / new Vector3(GlobalTransform.M00, GlobalTransform.M10, GlobalTransform.M20).Magnitude;
+                    float yOffset = (value.Y - Parent.WorldPosition.Y) / new Vector3(GlobalTransform.M01, GlobalTransform.M11, GlobalTransform.M21).Magnitude;
+                    float zOffset = (value.Z - Parent.WorldPosition.Z) / new Vector3(GlobalTransform.M02, GlobalTransform.M12, GlobalTransform.M22).Magnitude;
+                    SetTranslation(xOffset, yOffset, zOffset);
                 }
                 else
                 {
@@ -257,9 +258,9 @@ namespace MathForGames
         /// </summary>
         /// <param name="translationX">The new x position</param>
         /// <param name="translationY">The new y position</param>
-        public void SetTranslation(float translationX, float translationY)
+        public void SetTranslation(float translationX, float translationY, float translationZ)
         {
-            //_translation = Matrix4.CreateTranslation(translationX, translationY);
+            _translation = Matrix4.CreateTranslation(translationX, translationY, translationZ);
         }
 
         /// <summary>
@@ -267,9 +268,9 @@ namespace MathForGames
         /// </summary>
         /// <param name="translationX">The amount to move on the x</param>
         /// <param name="translationY">The amount to move on the y</param>
-        public void Translate(float translationX, float translationY)
+        public void Translate(float translationX, float translationY, float translationZ)
         {
-            //_translation *= Matrix4.CreateTranslation(translationX, translationY);
+            _translation *= Matrix4.CreateTranslation(translationX, translationY, translationZ);
         }
 
         /// <summary>
@@ -303,7 +304,7 @@ namespace MathForGames
         /// <param name="y">The value to scale on the y axis</param>
         public void SetScale(float x, float y, float z)
         {
-            _scale = Matrix4.CreateScale(new Vector3(x, y, z));
+            _scale = Matrix4.CreateScale(x, y, z);
         }
 
         /// <summary>
@@ -313,7 +314,7 @@ namespace MathForGames
         /// <param name="y">The value to scale on the y axis</param>
         public void Scale(float x, float y, float z)
         {
-            _scale *= Matrix4.CreateScale(new Vector3(x, y, z));
+            _scale *= Matrix4.CreateScale(x, y, z);
         }
 
         /// <summary>
