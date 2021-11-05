@@ -12,12 +12,16 @@ namespace MathLibrary
 
         public float Magnitude
         {
-            get { return 0; }
+            get { return (float)Math.Sqrt(X * X + Y * Y + Z * Z); }
         }
 
         public Vector3 Normalized
         {
-            get { return new Vector3(); }
+            get 
+            {
+                Vector3 value = this;
+                return value.Normalize();
+            }
         }
 
         public Vector3(float x, float y, float z)
@@ -29,46 +33,71 @@ namespace MathLibrary
 
         public Vector3 Normalize()
         {
-            return new Vector3();
+            if (Magnitude == 0)
+                return new Vector3();
+
+            return this /= Magnitude;
         }
 
         public static float DotProduct(Vector3 lhs, Vector3 rhs)
         {
-            return 0;
+            return (lhs.X * rhs.X) + (lhs.Y * rhs.Y) + (lhs.Z * rhs.Z);
         }
 
         public static float Distance(Vector3 lhs, Vector3 rhs)
         {
-            return 0;
+            return (rhs - lhs).Magnitude;
         }
 
         public static Vector3 operator -(Vector3 lhs, Vector3 rhs)
         {
-            return new Vector3();
+            return new Vector3 { X = lhs.X - rhs.X, Y = lhs.Y - rhs.Y, Z = lhs.Z - rhs.Z };
         }
 
         public static Vector3 operator +(Vector3 lhs, Vector3 rhs)
         {
-            return new Vector3();
+            return new Vector3 { X = lhs.X + rhs.X, Y = lhs.Y + rhs.Y, Z = lhs.Z + rhs.Z };
         }
 
         public static Vector3 operator *(Vector3 lhs, float rhs)
         {
-            return new Vector3();
+            Vector3 result = new Vector3();
+
+            result.X = lhs.X *= rhs;
+            result.Y = lhs.Y *= rhs;
+            result.Z = lhs.Z *= rhs;
+
+            return result;
         }
 
         public static Vector3 operator /(Vector3 lhs, float rhs)
         {
-            return new Vector3();
+            Vector3 result = new Vector3();
+
+            result.X = lhs.X /= rhs;
+            result.Y = lhs.Y /= rhs;
+            result.Z = lhs.Z /= rhs;
+
+            return result;
         }
 
         public static bool operator ==(Vector3 lhs, Vector3 rhs)
         {
+            if (lhs.X == rhs.X && lhs.Y == rhs.Y && lhs.Z == rhs.Z)
+            {
+                return true;
+            }
+
             return false;
         }
 
         public static bool operator !=(Vector3 lhs, Vector3 rhs)
         {
+            if (lhs.X != rhs.X || lhs.Y != rhs.Y || lhs.Z != rhs.Z)
+            {
+                return true;
+            }
+
             return false;
         }
     }
