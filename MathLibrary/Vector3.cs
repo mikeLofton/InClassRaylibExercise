@@ -31,6 +31,16 @@ namespace MathLibrary
             Z = z;
         }
 
+        public static Vector3 UP
+        {
+            get { return new Vector3(0, 1, 0); }
+        }
+
+        public static Vector3 RIGHT
+        {
+            get { return new Vector3(1, 0, 0); }
+        }
+
         public Vector3 Normalize()
         {
             if (Magnitude == 0)
