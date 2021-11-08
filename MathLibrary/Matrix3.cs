@@ -8,6 +8,18 @@ namespace MathLibrary
     {
         public float M00, M01, M02, M10, M11, M12, M20, M21, M22;
 
+        /// <summary>
+        /// Matrix3 Constructor
+        /// </summary>
+        /// <param name="m00">Row1, Col1</param>
+        /// <param name="m01">Row1, Col2</param>
+        /// <param name="m02">Row1, Col3</param>
+        /// <param name="m10">Row2, Col1</param>
+        /// <param name="m11">Row2, Col2</param>
+        /// <param name="m12">Row2, Col3</param>
+        /// <param name="m20">Row3, Col1</param>
+        /// <param name="m21">Row3, Col2</param>
+        /// <param name="m22">Row3, Col3</param>
         public Matrix3(float m00, float m01, float m02,
                        float m10, float m11, float m12,
                        float m20, float m21, float m22)
@@ -17,6 +29,9 @@ namespace MathLibrary
             M20 = m20; M21 = m21; M22 = m22;
         }
 
+        /// <summary>
+        /// Creates and Identity Matrix3
+        /// </summary>
         public static Matrix3 Identity
         {
             get
@@ -30,8 +45,8 @@ namespace MathLibrary
         /// <summary>
         /// Creates a new matrix that has been rotated by the given value in radians
         /// </summary>
-        /// <param name="radians">The result of the rotation</param>
-        /// <returns></returns>
+        /// <param name="radians">The radians to rotate by</param>
+        /// <returns>The result of the rotation</returns>
         public static Matrix3 CreateRotation(float radians)
         {
             return new Matrix3
@@ -59,6 +74,21 @@ namespace MathLibrary
         }
 
         /// <summary>
+        /// Creates a new matrix that has been translated by the given value
+        /// </summary>
+        /// <param name="position">The position of the new Matrix</param>
+        /// <returns></returns>
+        public static Matrix3 CreateTranslation(Vector2 position)
+        {
+            return new Matrix3
+                (
+                    1, 0, position.X,
+                    0, 1, position.Y,
+                    0, 0, 1
+                );
+        }
+
+        /// <summary>
         /// Creates a new matrix that has been scaled by the given value
         /// </summary>
         /// <param name="x">The value to use to scale the matrix in the x axis</param>
@@ -74,6 +104,12 @@ namespace MathLibrary
                 );
         }
 
+        /// <summary>
+        /// Overload for matrix3 addition
+        /// </summary>
+        /// <param name="lhs">The first matrix</param>
+        /// <param name="rhs">The second matrix</param>
+        /// <returns>New matrix with the added values</returns>
         public static Matrix3 operator +(Matrix3 lhs, Matrix3 rhs)
         {
             return new Matrix3
@@ -84,6 +120,12 @@ namespace MathLibrary
                 );
         }
 
+        /// <summary>
+        /// Overload for matrix3 suntraction
+        /// </summary>
+        /// <param name="lhs">The first matrix</param>
+        /// <param name="rhs">The second matrix</param>
+        /// <returns>New matrix with the subtracted values</returns>
         public static Matrix3 operator -(Matrix3 lhs, Matrix3 rhs)
         {
             return new Matrix3
@@ -94,6 +136,12 @@ namespace MathLibrary
                 );
         }
 
+        /// <summary>
+        /// Overload for matrix3 multiplication
+        /// </summary>
+        /// <param name="lhs">The first matrix</param>
+        /// <param name="rhs">The second matrix</param>
+        /// <returns>New matrix with the multiplied values</returns>
         public static Matrix3 operator *(Matrix3 lhs, Matrix3 rhs)
         {
             Matrix3 result = new Matrix3();
@@ -122,6 +170,12 @@ namespace MathLibrary
             return result;
         }
 
+        /// <summary>
+        /// Overload for multiplying a matrix3 with a vector3
+        /// </summary>
+        /// <param name="lhs">The given matrix</param>
+        /// <param name="rhs">The given vector</param>
+        /// <returns>New vector with the multiplied values</returns>
         public static Vector3 operator *(Matrix3 lhs, Vector3 rhs)
         {
             return new Vector3

@@ -86,13 +86,14 @@ namespace MathLibrary
 
         public static Vector4 operator *(float lhs, Vector4 rhs)
         {
-            return new Vector4
-                (
-                    lhs *= rhs.X,
-                    lhs *= rhs.Y,
-                    lhs *= rhs.Z,
-                    lhs *= rhs.W
-                );
+            Vector4 result = new Vector4();
+
+            result.X = rhs.X *= lhs;
+            result.Y = rhs.Y *= lhs;
+            result.Z = rhs.Z *= lhs;
+            result.W = rhs.W *= lhs;
+
+            return result;
         }
 
 
