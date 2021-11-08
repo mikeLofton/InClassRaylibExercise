@@ -83,10 +83,15 @@ namespace MathForGames
 
             Player player = new Player(1, 0, 1, 30, "Player", Shape.CUBE);
             player.SetScale(1, 1, 1);
+            player.LookAt(Vector3.RIGHT);
+            player.SetColor(new Vector4(60, 40, 20, 100));
             //CircleCollider playerCircleCollider = new CircleCollider(15, player);
             //AABBCollider playerBoxCollider = new AABBCollider(40, 40, player);
             //player.Collider = playerCircleCollider;
             _player = player;
+
+            Enemy enemy = new Enemy(5, 0, 1, 10, player, "Enemy", Shape.SPHERE);
+
             scene.AddActor(player);
 
             _currentSceneIndex = AddScene(scene);
