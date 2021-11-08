@@ -90,6 +90,16 @@ namespace MathLibrary
             return result;
         }
 
+        public static Vector3 operator *(float lhs, Vector3 rhs)
+        {
+            return new Vector3
+                (
+                    lhs *= rhs.X,
+                    lhs *= rhs.Y,
+                    lhs *= rhs.Z
+                );
+        }
+
         public static Vector3 operator /(Vector3 lhs, float rhs)
         {
             Vector3 result = new Vector3();

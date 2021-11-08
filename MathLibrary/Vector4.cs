@@ -84,6 +84,18 @@ namespace MathLibrary
             return result;
         }
 
+        public static Vector4 operator *(float lhs, Vector4 rhs)
+        {
+            return new Vector4
+                (
+                    lhs *= rhs.X,
+                    lhs *= rhs.Y,
+                    lhs *= rhs.Z,
+                    lhs *= rhs.W
+                );
+        }
+
+
         public static Vector4 operator /(Vector4 lhs, float rhs)
         {
             Vector4 result = new Vector4();
