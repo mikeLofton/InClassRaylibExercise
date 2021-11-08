@@ -121,7 +121,7 @@ namespace MathLibrary
         }
 
         /// <summary>
-        /// Overload for matrix3 suntraction
+        /// Overload for matrix3 subtraction
         /// </summary>
         /// <param name="lhs">The first matrix</param>
         /// <param name="rhs">The second matrix</param>
